@@ -43,17 +43,17 @@ namespace Microsoft.Maui.Platform
 
 				return base.ShouldInterceptRequest(view, request);
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				if (Handler is null || Handler is IViewHandler ivh && ivh.VirtualView is null)
 				{
 					return null;
 				}
-				
+
 				Handler.MauiContext?.CreateLogger<HybridWebViewHandler>()?.LogError(ex, "Error invoking ShouldInterceptRequest: {ErrorMessage}", ex.Message);
 				throw;
 			}
-		
+
 		}
 
 		private WebResourceResponse? GetResponseStream(AWebView? view, IWebResourceRequest? request)
@@ -213,7 +213,7 @@ namespace Microsoft.Maui.Platform
 					var data = await _task;
 
 					// the stream or handler may be disposed after the method completes
-					if(_isDisposed || Handler is null)
+					if (_isDisposed || Handler is null)
 					{
 						return;
 					}
